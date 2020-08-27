@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //mEditText.setText(mEditText.getText() + "0");
-                input = mEditText.getText() + "0";
+                input +=  mEditText.getText() + "0";
                 mEditText.setText(input);
             }
         });
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //mEditText.setText(mEditText.getText() + "1");
-                input = mEditText.getText() + "1";
+                input += input + mEditText.getText() + "1";
                 mEditText.setText(input);
             }
         });
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //mEditText.setText(mEditText.getText() + "2");
-                input = mEditText.getText() + "2";
+                input += mEditText.getText() + "2";
                 mEditText.setText(input);
             }
         });
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //mEditText.setText(mEditText.getText() + "3");
-                input = mEditText.getText() + "3";
+                input += mEditText.getText() + "3";
                 mEditText.setText(input);
             }
         });
@@ -128,90 +128,101 @@ public class MainActivity extends AppCompatActivity {
         btn_Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEditText == null) {
-                    mEditText.setText("");
-                } else {
-                    if(input.split("\\+").length==2){
-                        String numbers[]=input.split("\\+");
-                        try{
-                            double sum=Double.parseDouble(numbers[0])+Double.parseDouble(numbers[1]);
-                            input=sum+"";
-                        }
-                        catch (Exception e){
-                            //Display error
-                            mEditText.setText("Error Occured");
-                        }
-                    }
-                    Value1 = Float.parseFloat(mEditText.getText() + "");
-                    mAddition = true;
-                    input = mEditText.getText() + "+";
-                    mEditText.setText(input);
-                    //mEditText.setText("+");
 
-                    //mEditText.setText(mEditText.getText() + "2");
-
-                }
             }
         });
 
         btn_Sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEditText == null) {
-                    mEditText.setText("");
-                } else {
-                    Value1 = Float.parseFloat(mEditText.getText() + "");
-                    mSubtract = true;
-                    mEditText.setText("-");
-                }
+
             }
         });
 
         btn_Mul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value1 = Float.parseFloat(mEditText.getText() + "");
-                mMultiplication = true;
-                mEditText.setText(null);
+                input+="*";
             }
         });
 
         btn_Div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value1 = Float.parseFloat(mEditText.getText() + "");
-                mDivision = true;
-                mEditText.setText("/");
+
             }
         });
 
         btn_calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Value2 = Float.parseFloat(mEditText.getText() + "");
-                Value3 = Float.parseFloat(mEditText.getText() + "");
-                Value4 = Float.parseFloat(mEditText.getText() + "");
-
-                if (mAddition == true) {
-
-                    mEditText.setText(Value1 + Value2 + "");
-                    mAddition = false;
+                if(input.split("\\*").length==2){
+                    String numbers[]=input.split("\\*");
+                    try{
+                        double mul=Double.parseDouble(numbers[0])*Double.parseDouble(numbers[1]);
+                        input=mul+"";
+                    }
+                    catch (Exception e){
+                        //Display error
+                    }
                 }
-
-                if (mSubtract == true) {
-                    mEditText.setText(Value1 - Value2 + "");
-                    mSubtract = false;
+                else if(input.split("/").length==2){
+                    String numbers[]=input.split("/");
+                    try{
+                        double div=Double.parseDouble(numbers[0])/Double.parseDouble(numbers[1]);
+                        input=div+"";
+                    }
+                    catch (Exception e){
+                        //Display error
+                    }
                 }
-
-                if (mMultiplication == true) {
-                    mEditText.setText(Value1 * Value2 + "");
-                    mMultiplication = false;
+                else if(input.split("\\^").length==2){
+                    String numbers[]=input.split("\\^");
+                    try{
+                        double pow=Math.pow(Double.parseDouble(numbers[0]),Double.parseDouble(numbers[1]));
+                        input=pow+"";
+                    }
+                    catch (Exception e){
+                        //Display error
+                    }
                 }
-
-                if (mDivision == true) {
-                    mEditText.setText(Value1 / Value2 + "");
-                    mDivision = false;
+                else if(input.split("\\+").length==2){
+                    String numbers[]=input.split("\\+");
+                    try{
+                        double sum=Double.parseDouble(numbers[0])+Double.parseDouble(numbers[1]);
+                        input=sum+"";
+                    }
+                    catch (Exception e){
+                        //Display error
+                    }
                 }
+                else if(input.split("\\-").length>1){
+                    String numbers[]=input.split("\\-");
+                    if(numbers[0]=="" && numbers.length==2){
+                        numbers[0]=0+"";
+                    }
+                    try{
+                        double sub=0;
+                        if(numbers.length==2) {
+                            sub = Double.parseDouble(numbers[0]) - Double.parseDouble(numbers[1]);
+                        }
+                        else if(numbers.length==3){
+                            sub = -Double.parseDouble(numbers[1]) - Double.parseDouble(numbers[2]);
+                        }
+                        input=sub+"";
+                    }
+                    catch (Exception e){
+                        //Display error
+                    }
+                }
+                String n[]=input.split("\\.");
+                if(n.length>1){
+                    if(n[1].equals("0")){
+                        input=n[0];
+                    }
+                }
+                mEditText.setText(input);
+
             }
         });
 
