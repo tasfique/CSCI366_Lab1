@@ -8,20 +8,48 @@
     android:weightSum="6"
     tools:context="com.csci366_2020.tasfique.calculator.MainActivity">
 
-    <EditText
+    <!--<EditText
         android:id="@+id/edText1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
+        android:layout_height="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:background="#9DFFD4"
+        android:background="#2DDD90"
         android:gravity="center|right"
         android:padding="5dp"
         android:textColor="#0000ff"
+        android:textSize="10sp"
+        android:textStyle="bold" />-->
+
+    <TextView
+        android:id="@+id/edText1"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:gravity="end"
+        android:textColor="#0000ff"
+        android:background="#2DDD90"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text=""
+        />
+    <TextView
+        android:id="@+id/edText2"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:textSize="60sp"
+        android:gravity="end"
+        android:textColor="#0000ff"
+        android:background="#2DDD90"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:text=""
+        />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -36,9 +64,10 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/keyboard_btn"
-            android:text="Clear"
+            android:text="@string/clear"
             android:textColor="#FF0000"
-            android:textSize="30dp" />
+            android:textSize="30sp"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_Div"
@@ -47,10 +76,10 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/keyboard_btn"
-
             android:text="/"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
+
     </LinearLayout>
 
     <LinearLayout
